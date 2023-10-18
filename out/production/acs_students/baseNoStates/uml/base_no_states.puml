@@ -69,47 +69,6 @@ class Main {
 + {static} main(args : String)
 }
 
-class DoorStates {
-#door : Door
-#name : String
-+DoorState(door : Door)
-+open()
-+close()
-+lock()
-+unlock()
-}
-
-class States{
-+LOCKED : String
-+UNLOCKED : String
-}
-
-class Unlocked{
-+DoorState(door : Door)
-+open()
-+close()
-+lock()
-+unlock()
-}
-
-
-class locked{
-+DoorState(door : Door)
-+open()
-+close()
-+lock()
-+unlock()
-}
-
-class Actions{
-+LOCK : String
-+UNLOCK: String
-+OPEN: String
-+CLOSE : String
-}
-
-'DoorState --> UNLOCKED :
-
 note right of Main::main
 DirectoryDoors.makeDoors()
 DiretoryUsers.makeUsers()

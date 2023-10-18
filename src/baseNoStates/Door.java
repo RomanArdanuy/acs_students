@@ -8,6 +8,26 @@ public class Door {
   private final String id;
   private boolean closed; // physically
 
+  private DoorState state;
+
+  private Partition partition;
+  private Space space,space2;
+
+  public Door(String id, Partition partition, Space space)
+  {
+    this.id=id;
+    this.partition=partition;
+    this.space=space;
+  }
+
+  public Door(String id, Space space2, Space space)
+  {
+    this.id=id;
+    this.space2=space2;
+    this.space=space;
+  }
+
+
   public Door(String id) {
     this.id = id;
     closed = true;
@@ -28,24 +48,24 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed) {
-          closed = false;
-        } else {
-          System.out.println("Can't open door " + id + " because it's already open");
-        }
+        state.open();
         break;
+
       case Actions.CLOSE:
-        if (closed) {
-          System.out.println("Can't close door " + id + " because it's already closed");
-        } else {
-          closed = true;
-        }
+        state.close();
         break;
+
       case Actions.LOCK:
         // TODO
+        state.lock();
+
+        break;
         // fall through
       case Actions.UNLOCK:
         // TODO
+        state.unlock();
+        break;
+
         // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
@@ -61,6 +81,11 @@ public class Door {
     return closed;
   }
 
+  public void setClosed(boolean closed)
+  {
+    this.closed=closed;
+  }
+
   public String getId() {
     return id;
   }
@@ -69,6 +94,10 @@ public class Door {
     return "unlocked";
   }
 
+  public void setState(DoorState state)
+  {
+    this.state=state;
+  }
   @Override
   public String toString() {
     return "Door{"
