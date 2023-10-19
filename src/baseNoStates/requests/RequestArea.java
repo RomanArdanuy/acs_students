@@ -3,6 +3,9 @@ package baseNoStates.requests;
 import baseNoStates.Actions;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import baseNoStates.Area;
+import baseNoStates.DirectoryAreas;
+import baseNoStates.Door;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

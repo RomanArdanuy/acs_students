@@ -2,9 +2,11 @@ package baseNoStates;
 
 import java.util.ArrayList;
 
-public class DirectoryAreas extends Area{
+public class DirectoryAreas {
   private static ArrayList<Door> allDoors;
-  private String area;
+  private static ArrayList<Area> allAreas = new ArrayList<>();
+
+  private static Area root;
 
   public static void makeAreas()
   {
@@ -39,15 +41,22 @@ public class DirectoryAreas extends Area{
 
   public static Door findDoorById(String id)
   {
-
+    for (Door door : allDoors) {
+      if (door.getId().equals(id)) {
+        return door;
+      }
+    }
+    return null;
   }
 
-
-  public static Door findDoorById(String id)
-  {
-
+  public static Area findAreaById(String id) {
+    for (Area area : allAreas) {
+      if (area.getId().equals(id)) {
+        return area;
+      }
+    }
+    return null; // Return null if no area with the given ID is found
   }
-
 
 
 }
