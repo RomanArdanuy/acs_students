@@ -18,7 +18,7 @@ public abstract class Area {
 
   // Abstract methods to be implemented by subclasses
   public abstract List<Door> getDoorsGivingAccess();
-//  public abstract List<Space> getSpaces();
+  public abstract List<Space> getSpaces();
 
   // Other methods and functionalities can be added based on further requirements
 }

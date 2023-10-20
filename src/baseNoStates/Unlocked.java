@@ -34,5 +34,8 @@ public class Unlocked extends DoorState{
   public void unlock() {
     System.out.println("Already unlocked");
   }
-
+  @Override
+  public void unlockShortly() {
+    // Either ignore or set a timer to lock the door after a short duration
+  }
 }

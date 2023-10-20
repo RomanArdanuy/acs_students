@@ -76,7 +76,7 @@ public class Door {
         // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
-        System.out.println("Action " + action + " not implemented yet");
+        state.unlockShortly();
         break;
       default:
         assert false : "Unknown action " + action;
@@ -98,7 +98,7 @@ public class Door {
   }
 
   public String getStateName() {
-    return "unlocked";
+    return state.name;
   }
 
   public void setState(DoorState State)

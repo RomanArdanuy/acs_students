@@ -1,6 +1,8 @@
 package baseNoStates;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Space {
+public class Space extends Area{
   private String name;
   private String description;
   private Partition parentSpace;
@@ -11,5 +13,13 @@ public class Space {
     this.parentSpace = parentSpace;
   }
 
+  public List<Door> getDoorsGivingAccess()
+  {
 
+  }
+
+  public  List<Space> getSpaces()
+  {
+
+  }
 }
