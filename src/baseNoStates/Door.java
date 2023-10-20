@@ -53,7 +53,7 @@ public class Door {
     request.setDoorStateName(getStateName());
   }
 
-  protected void doAction(String action) {
+  private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
         state.open();
