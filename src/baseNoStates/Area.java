@@ -16,7 +16,11 @@ public abstract class Area {
     return id;
   }
 
-  // Abstract methods to be implemented by subclasses
+  public Area()
+  {
+    this.id="";
+
+  }
   public abstract List<Door> getDoorsGivingAccess();
   public abstract List<Space> getSpaces();
 

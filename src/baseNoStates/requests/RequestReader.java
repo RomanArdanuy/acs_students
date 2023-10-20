@@ -88,7 +88,7 @@ public class RequestReader implements Request {
     doorClosed = door.isClosed();
   }
 
-  // the result is put into the request object plus, if not authorized, why not,
+  // the result is put into t he request object plus, if not authorized, why not,
   // only for testing
   private void authorize(User user, Door door) {
     if (user == null) {

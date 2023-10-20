@@ -7,7 +7,7 @@ public class Partition extends Area{
   private String description;
   private Object data;
   private List<Area> children;
-
+  private List<Door> doors;
   public Partition(String name, String description, Object data) {
     this.name = name;
     this.description = description;
@@ -28,8 +28,15 @@ public class Partition extends Area{
     List<Space> spaces = new ArrayList<>();
     for(Area child: children)
     {
-      if(child instanceof Space)
+      if(child instanceof Space){
+        spaces.add((Space) child);
+      }else if(child instanceof Partition)
+        spaces.addAll(((Partition)child).getSpaces());
     }
-
+    return spaces;
   }
+
+
+
+
 }
