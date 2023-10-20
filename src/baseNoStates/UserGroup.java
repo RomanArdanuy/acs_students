@@ -12,6 +12,10 @@ public class UserGroup {
     this.users = new ArrayList<>();
     this.permissions = new ArrayList<>();
   }
+  public String getGroupName()
+  {
+    return groupName;
+  }
 
   public void addUser(User user)
   {
@@ -20,12 +24,6 @@ public class UserGroup {
       users.add(user);
     }
   }
-
-  public String getGroupName()
-  {
-    return groupName;
-  }
-
 
 
   public void  removeUser(User user)

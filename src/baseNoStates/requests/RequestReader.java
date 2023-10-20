@@ -91,18 +91,47 @@ public class RequestReader implements Request {
   // the result is put into t he request object plus, if not authorized, why not,
   // only for testing
   private void authorize(User user, Door door) {
+
     if (user == null) {
       authorized = false;
       addReason("user doesn't exists");
-    } else {
+    }
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)
 
+    if (!user.hasPermission(action + "_" + door.getId())) {
+      authorized = false;
+      addReason("User doesn't have permission for this action on the door.");
+      return;
+    }
 
+    String currentState = door.getStateName();
 
+    if (action.equals("open") && currentState.equals("opened")) {
+      authorized = false;
+      addReason("Door is already open.");
+      return;
+    }
+    if (action.equals("close") && currentState.equals("Closed")) {
+      authorized = false;
+      addReason("Door is already closed.");
+      return;
+    }
 
+    if (action.equals("lock") && currentState.equals("Locked")) {
+      authorized = false;
+      addReason("Door is already locked.");
+      return;
+    }
+
+    if (action.equals("unlock") && currentState.equals("Unlocked")) {
+      authorized = false;
+      addReason("Door is already unlocked.");
+      return;
+    }
+    // If none of the above conditions are met, the action is authorized.
       authorized = true;
     }
-  }
 }
+
 
