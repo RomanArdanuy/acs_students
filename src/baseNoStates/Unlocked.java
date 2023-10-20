@@ -5,20 +5,30 @@ public class Unlocked extends DoorState{
   public Unlocked(Door door)
   {
     super(door);
-    this.name="locked";
+    this.name="unlocked";
   }
-  public void open(){
-    System.out.println("Door is locked");
-  }
+  public void open() {
+    if (door.isClosed()) {
+      door.setClosed(false);
+    } else {
+      System.out.println("Door is locked");
 
+    }
+  }
   public void close() {
     if(door.isClosed())
       System.out.println("Door is already closed");
-    else{}
+    else{
+      door.setClosed(true);
+    }
   }
 
   public void lock() {
-    this.door.setState(new Locked(door));
+    if (door.isClosed()) {
+      door.setState(new Locked(door));
+    } else {
+      System.out.println("Door is open");
+    }
   }
 
   public void unlock() {

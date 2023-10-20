@@ -13,11 +13,15 @@ public class Door {
   private Partition partition;
   private Space space,space2;
 
+
+
+
   public Door(String id, Partition partition, Space space)
   {
     this.id=id;
     this.partition=partition;
     this.space=space;
+    state= new Unlocked(this);
   }
 
   public Door(String id, Space space2, Space space)
@@ -25,13 +29,17 @@ public class Door {
     this.id=id;
     this.space2=space2;
     this.space=space;
+    state= new Unlocked(this);
   }
 
 
   public Door(String id) {
     this.id = id;
     closed = true;
+    state= new Unlocked(this);
   }
+
+
 
   public void processRequest(RequestReader request) {
     // it is the Door that process the request because the door has and knows
@@ -56,7 +64,6 @@ public class Door {
         break;
 
       case Actions.LOCK:
-        // TODO
         state.lock();
 
         break;
@@ -94,9 +101,9 @@ public class Door {
     return "unlocked";
   }
 
-  public void setState(DoorState state)
+  public void setState(DoorState State)
   {
-    this.state=state;
+    state=State;
   }
   @Override
   public String toString() {

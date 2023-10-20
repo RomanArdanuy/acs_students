@@ -6,12 +6,13 @@ public class DirectoryAreas {
   private static ArrayList<Door> allDoors;
   private static ArrayList<Area> allAreas = new ArrayList<>();
 
-  private static Area root;
+  private static Partition root;
 
   public static void makeAreas()
   {
-    Partition building = new Partition("building", "...", null);
 
+    Partition building = new Partition("building", "...", null);
+    root=building;
     Partition basement = new Partition("basement", "...", building);
     Partition groundfloor = new Partition("groundfloor", "...", building);
     Partition floor1 = new Partition("floor1", "...", building);
