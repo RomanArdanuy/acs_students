@@ -1,29 +1,26 @@
 package baseNoStates;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Area {
+  protected String id;
+  protected String description;
+  protected Partition parent;
+  protected List<Area> children;
 
-  private String id;
-  private List<Area> children;
-
-  public Area(String id) {
+  public Area(String id, String description, Partition parent) {
     this.id = id;
+    this.description = description;
+    this.parent = parent;
     this.children = new ArrayList<>();
   }
-
   public String getId() {
     return id;
   }
 
-  public Area()
-  {
-    this.id="";
-
-  }
   public abstract List<Door> getDoorsGivingAccess();
   public abstract List<Space> getSpaces();
 
-  // Other methods and functionalities can be added based on further requirements
+  // ... other methods and attributes specific to Area ...
 }
-

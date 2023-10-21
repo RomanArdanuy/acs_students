@@ -1,42 +1,36 @@
 package baseNoStates;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Partition extends Area{
-  private String name;
-  private String description;
-  private Object data;
-  private List<Area> children;
-  private List<Door> doors;
-  public Partition(String name, String description, Object data) {
-    this.name = name;
-    this.description = description;
-    this.data = data;
+public class Partition extends Area {
+
+  public Partition(String id, String description, Partition parent) {
+    super(id, description, parent);
+    if (parent != null) {
+      parent.children.add(this);  // Add this partition to the parent's children list
+    }
   }
 
-  public List<Door> getDoorsGivingAccess()
-  {
-    List<Door> doors=new ArrayList<>();
-    for(Area child: children)
-    {
+  @Override
+  public List<Door> getDoorsGivingAccess() {
+    List<Door> doors = new ArrayList<>();
+    for (Area child : children) {
       doors.addAll(child.getDoorsGivingAccess());
     }
     return doors;
   }
 
-  public  List<Space> getSpaces() {
+  @Override
+  public List<Space> getSpaces() {
     List<Space> spaces = new ArrayList<>();
-    for(Area child: children)
-    {
-      if(child instanceof Space){
+    for (Area child : children) {
+      if (child instanceof Space) {
         spaces.add((Space) child);
-      }else if(child instanceof Partition)
-        spaces.addAll(((Partition)child).getSpaces());
+      } else if (child instanceof Partition) {
+        spaces.addAll(child.getSpaces());
+      }
     }
     return spaces;
   }
-
-
-
-
 }

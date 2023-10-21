@@ -1,30 +1,40 @@
 package baseNoStates;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Space extends Area{
-  private String name;
-  private String description;
-  private Partition parentSpace;
-  private List<Door> doors;
-  private List<Area> children;
+public class Space extends Area {
 
-  public Space(String name, String description, Partition parentSpace) {
-    this.name = name;
-    this.description = description;
-    this.parentSpace = parentSpace;
+  private List<Door> doorsGivingAccess;  // Assuming each space has a list of doors giving access
+
+  public Space(String id, String description, Partition parent) {
+    super(id, description, parent);
+    this.doorsGivingAccess = new ArrayList<>();
+    if (parent != null) {
+      parent.children.add(this);  // Add this space to the parent's children list
+    }
   }
 
-  public List<Door> getDoorsGivingAccess()
-  {
-    return new ArrayList<>(doors);
+  @Override
+  public List<Door> getDoorsGivingAccess() {
+    return doorsGivingAccess;
   }
 
-  public  List<Space> getSpaces()
-  {
-    return Arrays.asList(this);
+  @Override
+  public List<Space> getSpaces() {
+    List<Space> spaces = new ArrayList<>();
+    spaces.add(this);
+    return spaces;
   }
 
+  // Assuming you might want to add or remove doors for a space
+  public void addDoor(Door door) {
+    if (!doorsGivingAccess.contains(door)) {
+      doorsGivingAccess.add(door);
+    }
+  }
 
+  public void removeDoor(Door door) {
+    doorsGivingAccess.remove(door);
+  }
 }
