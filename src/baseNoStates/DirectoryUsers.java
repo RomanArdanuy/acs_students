@@ -15,6 +15,12 @@ public final class DirectoryUsers {
     users.add(new User("Bernat", "12345"));
     users.add(new User("Blai", "77532"));
 
+
+
+
+
+
+
     // employees :
     // Sep. 1 2023 to Mar. 1 2024
     // week days 9-17h
@@ -36,7 +42,13 @@ public final class DirectoryUsers {
     // all days of the week
     // all actions
     // all spaces
-    users.add(new User("Ana", "11343"));
+    DirectoryUserGroup directory = new DirectoryUserGroup();
+    UserGroup adminGroup = directory.findUserGroupByName("Admin");
+    User Ana=new User("Ana", "11343");
+    if (adminGroup != null) {
+      Ana.setUserGroup(adminGroup);
+    }
+    users.add(Ana);
   }
 
   public static User findUserByCredential(String credential) {
@@ -52,9 +64,7 @@ public final class DirectoryUsers {
     this.userGroup = userGroup;
   }
 
-  User ana = new User("Ana", "11343");
-  ana.setUserGroup(adminGroup);  // Assuming adminGroup is a UserGroup instance for admins
-  users.add(ana);
+
 
 
 }
