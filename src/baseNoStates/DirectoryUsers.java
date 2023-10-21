@@ -45,6 +45,7 @@ public final class DirectoryUsers {
     DirectoryUserGroup directory = new DirectoryUserGroup();
     UserGroup adminGroup = directory.findUserGroupByName("Admin");
     User Ana=new User("Ana", "11343");
+    Ana.setUserGroup(adminGroup);
     if (adminGroup != null) {
       Ana.setUserGroup(adminGroup);
     }

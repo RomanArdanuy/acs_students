@@ -95,6 +95,7 @@ public class RequestReader implements Request {
     if (user == null) {
       authorized = false;
       addReason("user doesn't exists");
+      return;
     }
       //TODO: get the who, where, when and what in order to decide, and if not
       // authorized add the reason(s)
@@ -129,6 +130,8 @@ public class RequestReader implements Request {
       addReason("Door is already unlocked.");
       return;
     }
+
+
     // If none of the above conditions are met, the action is authorized.
       authorized = true;
     }

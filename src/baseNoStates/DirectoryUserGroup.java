@@ -14,9 +14,12 @@ public class DirectoryUserGroup {
     private void initializeDefaultUserGroup()
     {
         UserGroup adminGroup = new UserGroup("Admin");
-        adminGroup.grantPermission("open_*");
-        adminGroup.grantPermission("close_*");
-        adminGroup.grantPermission("lock_*");
+        adminGroup.grantPermission("open_D1");
+        adminGroup.grantPermission("close_D2");
+        adminGroup.grantPermission("lock_D1");
+        adminGroup.grantPermission("lock_D2");
+
+
         adminGroup.grantPermission("unlock_*");
         userGroups.add(adminGroup);
 

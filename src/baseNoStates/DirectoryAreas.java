@@ -2,8 +2,10 @@ package baseNoStates;
 
 import java.util.ArrayList;
 
+import static baseNoStates.DirectoryDoors.allDoors;
+
 public class DirectoryAreas {
-  private static ArrayList<Door> allDoors;
+
   private static ArrayList<Area> allAreas = new ArrayList<>();
 
   private static Partition root;
@@ -43,28 +45,6 @@ public class DirectoryAreas {
     allAreas.add(room3);
     allAreas.add(corridor);
     allAreas.add(IT);
-
-
-
-    Door d1 = new Door("D1", exterior, parking);
-    Door d2 = new Door("D2", stairs, parking);
-    Door d3 = new Door("D3", exterior , hall);
-    Door d4 = new Door("D4", stairs, hall);
-    Door d5 = new Door("D5", room1, hall);
-    Door d6 = new Door("D6", hall, room2);
-    Door d7 = new Door("D7", stairs, corridor);
-    Door d8 = new Door("D8", room3, corridor);
-    Door d9 = new Door("D9", corridor, IT);
-    allDoors.add(d1);
-    allDoors.add(d2);
-    allDoors.add(d3);
-    allDoors.add(d4);
-    allDoors.add(d5);
-    allDoors.add(d6);
-    allDoors.add(d7);
-    allDoors.add(d8);
-    allDoors.add(d9);
-
   }
 
   public static Door findDoorById(String id)
