@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public final class DirectoryUsers {
   private static final ArrayList<User> users = new ArrayList<>();
-
+  private UserGroup userGroup;
   public static void makeUsers() {
     //TODO: make user groups according to the specifications in the comments, because
     // now all are the same
@@ -48,5 +48,13 @@ public final class DirectoryUsers {
     System.out.println("user with credential " + credential + " not found");
     return null; // otherwise we get a Java error
   }
+  public void setUserGroup(UserGroup userGroup) {
+    this.userGroup = userGroup;
+  }
+
+  User ana = new User("Ana", "11343");
+  ana.setUserGroup(adminGroup);  // Assuming adminGroup is a UserGroup instance for admins
+  users.add(ana);
+
 
 }
