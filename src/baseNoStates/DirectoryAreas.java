@@ -51,6 +51,9 @@ public class DirectoryAreas {
     Door d1 = DirectoryDoors.findDoorById("D1");
     if (d1 != null) parking.addDoor(d1);
 
+
+
+
     Door d2 = DirectoryDoors.findDoorById("D2");
     if (d2 != null) {
       parking.addDoor(d2);
