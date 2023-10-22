@@ -8,7 +8,7 @@ public final class DirectoryUsers {
   public static void makeUsers() {
     //TODO: make user groups according to the specifications in the comments, because
     // now all are the same
-
+    DirectoryUserGroup directory = new DirectoryUserGroup();
     // users without any privilege, just to keep temporally users instead of deleting them,
     // this is to withdraw all permissions but still to keep user data to give back
     // permissions later
@@ -17,32 +17,44 @@ public final class DirectoryUsers {
 
 
 
-
-
-
-
     // employees :
     // Sep. 1 2023 to Mar. 1 2024
     // week days 9-17h
     // just shortly unlock
     // ground floor, floor1, exterior, stairs (this, for all), that is, everywhere but the parking
-    users.add(new User("Ernest", "74984"));
-    users.add(new User("Eulalia", "43295"));
+    UserGroup employeesGroup = directory.findUserGroupByName("employees");
+    User Ernest = new User("Ernest", "74984");
+    User Eulalia = new User("Eulalia", "43295");
+    if (employeesGroup != null) {
+      Ernest.setUserGroup(employeesGroup);
+      Eulalia.setUserGroup(employeesGroup);
+    }
+    users.add(Ernest);
+    users.add(Eulalia);
+
+
 
     // managers :
     // Sep. 1 2023 to Mar. 1 2024
     // week days + saturday, 8-20h
     // all actions
     // all spaces
-    users.add(new User("Manel", "95783"));
-    users.add(new User("Marta", "05827"));
+    UserGroup managersGroup = directory.findUserGroupByName("managers");
+    User Manel = new User("Manel", "95783");
+    User Marta = new User("Marta", "05827");
+    if (managersGroup != null) {
+      Manel.setUserGroup(managersGroup);
+      Marta.setUserGroup(managersGroup);
+    }
+    users.add(Manel);
+    users.add(Marta);
 
     // admin :
     // always=2023 to 2100
     // all days of the week
     // all actions
     // all spaces
-    DirectoryUserGroup directory = new DirectoryUserGroup();
+
     UserGroup adminGroup = directory.findUserGroupByName("Admin");
     User Ana=new User("Ana", "11343");
     Ana.setUserGroup(adminGroup);

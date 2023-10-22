@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Space extends Area {
 
-  private List<Door> doorsGivingAccess;  // Assuming each space has a list of doors giving access
+    // Assuming each space has a list of doors giving access
 
   public Space(String id, String description, Partition parent) {
     super(id, description, parent);

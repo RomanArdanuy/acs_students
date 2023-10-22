@@ -9,6 +9,8 @@ public abstract class Area {
   protected Partition parent;
   protected List<Area> children;
 
+  protected List<Door> doorsGivingAccess;
+
   public Area(String id, String description, Partition parent) {
     this.id = id;
     this.description = description;

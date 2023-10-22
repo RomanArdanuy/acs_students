@@ -13,23 +13,31 @@ public class DirectoryUserGroup {
 
     private void initializeDefaultUserGroup()
     {
-        UserGroup adminGroup = new UserGroup("Admin");
-        adminGroup.grantPermission("open_D1");
-        adminGroup.grantPermission("close_D2");
-        adminGroup.grantPermission("lock_D1");
-        adminGroup.grantPermission("lock_D2");
+        UserGroup adminGroup = new UserGroup("admin");
+        UserGroup managersGroup = new UserGroup("managers");
+        UserGroup employeesGroup  = new UserGroup("employees");
 
+        for (Door door : DirectoryDoors.getAllDoors()) {
+            // Employees permissions
+            if (!door.getId().equals("parking")) {
+                employeesGroup.grantPermission("unlockshortly_" + door.getId());
+            }
+            // Admin permissions
+            adminGroup.grantPermission("open_" + door.getId());
+            adminGroup.grantPermission("close_" + door.getId());
+            adminGroup.grantPermission("lock_" + door.getId());
+            adminGroup.grantPermission("unlock_" + door.getId());
 
-        adminGroup.grantPermission("unlock_*");
+            // Managers permissions
+            managersGroup.grantPermission("open_" + door.getId());
+            managersGroup.grantPermission("close_" + door.getId());
+            managersGroup.grantPermission("lock_" + door.getId());
+            managersGroup.grantPermission("unlock_" + door.getId());
+        }
+
         userGroups.add(adminGroup);
-
-
-        UserGroup employeeGroup = new UserGroup("Employee");
-        employeeGroup.grantPermission("open_D1");
-        employeeGroup.grantPermission("close_D1");
-        employeeGroup.grantPermission("open_D2");
-        employeeGroup.grantPermission("close_D2");
-        userGroups.add(employeeGroup);
+        userGroups.add(managersGroup);
+        userGroups.add(employeesGroup);
     }
 
 

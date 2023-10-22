@@ -33,4 +33,14 @@ public class Partition extends Area {
     }
     return spaces;
   }
+
+  public void addDoor(Door door) {
+    if (!doorsGivingAccess.contains(door)) {
+      doorsGivingAccess.add(door);
+    }
+  }
+
+  public void removeDoor(Door door) {
+    doorsGivingAccess.remove(door);
+  }
 }
