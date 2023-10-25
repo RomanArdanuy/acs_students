@@ -18,24 +18,23 @@ public class DirectoryUserGroup {
         UserGroup employeesGroup  = new UserGroup("employees");
 
         for (Door door : DirectoryDoors.getAllDoors()) {
-            // Employees permissions
+            // Admin permissions
             adminGroup.grantPermission("open_" + door.getId());
             adminGroup.grantPermission("close_" + door.getId());
             adminGroup.grantPermission("lock_" + door.getId());
             adminGroup.grantPermission("unlock_" + door.getId());
-
+            // Managers permissions
             managersGroup.grantPermission("open_" + door.getId());
             managersGroup.grantPermission("close_" + door.getId());
             managersGroup.grantPermission("lock_" + door.getId());
             managersGroup.grantPermission("unlock_" + door.getId());
 
-            if (!door.getId().equals("parking")) {
+            // Employees permissions
+            if (!door.getId().equals("D1") || (!door.getId().equals("D2"))) {
                 employeesGroup.grantPermission("unlockshortly_" + door.getId());
+                employeesGroup.grantPermission(("open_" + door.getId()));
+                employeesGroup.grantPermission(("close_" + door.getId()));
             }
-            // Admin permissions
-
-
-            // Managers permissions
 
         }
 

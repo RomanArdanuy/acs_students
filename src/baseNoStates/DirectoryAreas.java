@@ -18,7 +18,7 @@ public class DirectoryAreas {
     Partition basement = new Partition("basement", "...", building);
     Partition groundfloor = new Partition("groundfloor", "...", building);
     Partition floor1 = new Partition("floor1", "...", building);
-    Partition stairs = new Partition("stairs", "...", building);
+
     Partition exterior = new Partition("exterior", "...", building);
 
     allAreas.add(building);
@@ -26,11 +26,11 @@ public class DirectoryAreas {
     allAreas.add(basement);
     allAreas.add(groundfloor);
     allAreas.add(floor1);
-    allAreas.add(stairs);
+
     allAreas.add(exterior);
 
 
-
+    Space stairs = new Space("stairs", "...", building);
     Space parking = new Space("parking", "...", basement);
     Space hall = new Space("hall", "...", groundfloor);
     Space room1 = new Space("room1", "...", groundfloor);
@@ -41,6 +41,7 @@ public class DirectoryAreas {
 
     allAreas.add(parking);
     //parking.addDoor();
+    allAreas.add(stairs);
     allAreas.add(hall);
     allAreas.add(room1);
     allAreas.add(room2);
@@ -51,7 +52,7 @@ public class DirectoryAreas {
     Door d1 = DirectoryDoors.findDoorById("D1");
     if (d1 != null) parking.addDoor(d1);
 
-
+    if (d1 != null) stairs.addDoor(d1);
 
 
     Door d2 = DirectoryDoors.findDoorById("D2");

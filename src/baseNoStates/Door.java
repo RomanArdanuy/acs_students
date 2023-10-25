@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 
 public class Door {
-  private final String id;
+    private final String id;
   private boolean closed; // physically
 
   private DoorState state;
