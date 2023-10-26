@@ -58,7 +58,6 @@ public class DirectoryAreas {
     Door d2 = DirectoryDoors.findDoorById("D2");
     if (d2 != null) {
       parking.addDoor(d2);
-      hall.addDoor(d2);
     }
 
     Door d3 = DirectoryDoors.findDoorById("D3");
@@ -70,13 +69,12 @@ public class DirectoryAreas {
     Door d5 = DirectoryDoors.findDoorById("D5");
     if (d5 != null) {
       room1.addDoor(d5);
-      hall.addDoor(d5);
+
     }
 
     Door d6 = DirectoryDoors.findDoorById("D6");
     if (d6 != null) {
       room2.addDoor(d6);
-      hall.addDoor(d6);
     }
 
     Door d7 = DirectoryDoors.findDoorById("D7");
@@ -85,13 +83,13 @@ public class DirectoryAreas {
     Door d8 = DirectoryDoors.findDoorById("D8");
     if (d8 != null) {
       room3.addDoor(d8);
-      corridor.addDoor(d8);
+
     }
 
     Door d9 = DirectoryDoors.findDoorById("D9");
     if (d9 != null) {
       IT.addDoor(d9);
-      corridor.addDoor(d9);
+
     }
 
 

@@ -30,7 +30,7 @@ public class DirectoryUserGroup {
             managersGroup.grantPermission("unlock_" + door.getId());
 
             // Employees permissions
-            if (!door.getId().equals("D1") || (!door.getId().equals("D2"))) {
+            if (!door.getId().equals("D1") && (!door.getId().equals("D2"))) {
                 employeesGroup.grantPermission("unlockshortly_" + door.getId());
                 employeesGroup.grantPermission(("open_" + door.getId()));
                 employeesGroup.grantPermission(("close_" + door.getId()));
