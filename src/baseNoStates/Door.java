@@ -2,12 +2,13 @@ package baseNoStates;
 
 import baseNoStates.requests.RequestReader;
 import org.json.JSONObject;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory
 
 public class Door {
     private final String id;
   private boolean closed; // physically
-
+  private static final Logger logger = LoggerFactory.getLogger(Door.class);
   private DoorState state;
 
   private Partition partition;
@@ -48,7 +49,7 @@ public class Door {
       String action = request.getAction();
       doAction(action);
     } else {
-      System.out.println("not authorized");
+      logger.info("Not authorized");
     }
     request.setDoorStateName(getStateName());
   }

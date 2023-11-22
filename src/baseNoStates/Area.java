@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Area {
+
+  //
   protected String id;
   protected String description;
   protected Partition parent;

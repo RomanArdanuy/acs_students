@@ -1,6 +1,9 @@
 package baseNoStates;
 
 public abstract class DoorState {
+
+  //
+
   public Door door;
   String name;
 
