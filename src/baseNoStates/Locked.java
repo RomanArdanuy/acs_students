@@ -1,43 +1,49 @@
 package baseNoStates;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Locked extends DoorState{
+public class Locked extends DoorState {
 
-  public Locked(Door door)
-  {
+  private static final Logger logger = LoggerFactory.getLogger(Locked.class);
+
+  public Locked(Door door) {
     super(door);
-    this.name="locked";
+    this.name = "locked";
+    logger.debug("Door state set to locked");
   }
-  public void open(){
-    System.out.println("Door is closed");
+
+  public void open() {
+    logger.warn("Attempt to open a locked door");
   }
 
   public void close() {
-    System.out.println("Door is already closed");
+    logger.info("Door is already closed");
   }
 
   public void lock() {
-    System.out.println("Door is already locked");
+    logger.info("Door is already locked");
   }
 
   public void unlock() {
     this.door.setState(new Unlocked(door));
+    logger.info("Door unlocked");
   }
 
   @Override
   public void unlockShortly() {
-    System.out.println("Unlocking the door shortly...");
+    logger.info("Unlocking the door shortly...");
     this.door.setState(new Unlocked(door));
     Timer timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        System.out.println("Re-locking the door...");
+        logger.info("Re-locking the door...");
         door.setState(new Locked(door));
       }
     }, 5000); // 5 seconds delay
   }
-
-
 }
