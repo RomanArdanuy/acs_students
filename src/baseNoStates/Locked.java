@@ -6,6 +6,12 @@ import org.slf4j.LoggerFactory;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
+/*
+The class locked is part of the state design in our project, as it inherits the methods from
+the doorState class. In this class we implement all the abstract methods inherited specifically
+for a door that is locked, meaning it can only be unlocked
+ */
 public class Locked extends DoorState {
 
   private static final Logger logger = LoggerFactory.getLogger(Locked.class);

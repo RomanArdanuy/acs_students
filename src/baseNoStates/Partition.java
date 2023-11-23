@@ -6,6 +6,11 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+A partition is our composite class from the composite design pattern. It inherits two methods
+from our Area class, since a partition is a type of Area. A partition can contain other
+partitions and spaces inside.
+ */
 public class Partition extends Area {
 
   private static final Logger logger = LoggerFactory.getLogger(Partition.class);

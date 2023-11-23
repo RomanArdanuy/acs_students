@@ -5,10 +5,11 @@ import java.util.ArrayList;
 public final class DirectoryUsers {
   private static final ArrayList<User> users = new ArrayList<>();
   private UserGroup userGroup;
+
   public static void makeUsers() {
     //TODO: make user groups according to the specifications in the comments, because
     // now all are the same
-    DirectoryUserGroup directory = new DirectoryUserGroup();
+    DirectoryUserGroup directory = DirectoryUserGroup.getInstance();
     // users without any privilege, just to keep temporally users instead of deleting them,
     // this is to withdraw all permissions but still to keep user data to give back
     // permissions later
@@ -23,14 +24,14 @@ public final class DirectoryUsers {
     // just shortly unlock
     // ground floor, floor1, exterior, stairs (this, for all), that is, everywhere but the parking
     UserGroup employeesGroup = directory.findUserGroupByName("employees");
-    User Ernest = new User("Ernest", "74984");
-    User Eulalia = new User("Eulalia", "43295");
+    User ernest = new User("Ernest", "74984");
+    User eulalia = new User("Eulalia", "43295");
     if (employeesGroup != null) {
-      Ernest.setUserGroup(employeesGroup);
-      Eulalia.setUserGroup(employeesGroup);
+      ernest.setUserGroup(employeesGroup);
+      eulalia.setUserGroup(employeesGroup);
     }
-    users.add(Ernest);
-    users.add(Eulalia);
+    users.add(ernest);
+    users.add(eulalia);
 
 
 
@@ -40,14 +41,14 @@ public final class DirectoryUsers {
     // all actions
     // all spaces
     UserGroup managersGroup = directory.findUserGroupByName("managers");
-    User Manel = new User("Manel", "95783");
-    User Marta = new User("Marta", "05827");
+    User manel = new User("Manel", "95783");
+    User marta = new User("Marta", "05827");
     if (managersGroup != null) {
-      Manel.setUserGroup(managersGroup);
-      Marta.setUserGroup(managersGroup);
+      manel.setUserGroup(managersGroup);
+      marta.setUserGroup(managersGroup);
     }
-    users.add(Manel);
-    users.add(Marta);
+    users.add(manel);
+    users.add(marta);
 
     // admin :
     // always=2023 to 2100
@@ -56,12 +57,12 @@ public final class DirectoryUsers {
     // all spaces
 
     UserGroup adminGroup = directory.findUserGroupByName("admin");
-    User Ana=new User("Ana", "11343");
-    Ana.setUserGroup(adminGroup);
+    User ana = new User("Ana", "11343");
+    ana.setUserGroup(adminGroup);
     if (adminGroup != null) {
-      Ana.setUserGroup(adminGroup);
+      ana.setUserGroup(adminGroup);
     }
-    users.add(Ana);
+    users.add(ana);
   }
 
   public static User findUserByCredential(String credential) {
@@ -73,11 +74,9 @@ public final class DirectoryUsers {
     System.out.println("user with credential " + credential + " not found");
     return null; // otherwise we get a Java error
   }
+
   public void setUserGroup(UserGroup userGroup) {
     this.userGroup = userGroup;
   }
-
-
-
 
 }

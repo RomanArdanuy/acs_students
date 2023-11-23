@@ -2,6 +2,12 @@ package baseNoStates;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+A UserGroup will have an array of users containing all the users that are part of each group.
+A group can have different permissions from another different group, but all the users inside
+a same group will have the same permissions given to them.
+This class will manage the users and permissions of each group.
+ */
 public class UserGroup {
   private String groupName;
   private List<User> users;
@@ -51,10 +57,10 @@ public class UserGroup {
   @Override
   public String toString() {
     return "UserGroup{" +
-        "groupName='" + groupName + '\'' +
-        ", users=" + users +
-        ", permissions=" + permissions +
-        '}';
+            "groupName='" + groupName + '\'' +
+            ", users=" + users +
+            ", permissions=" + permissions +
+            '}';
   }
 
 }
