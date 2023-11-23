@@ -51,10 +51,10 @@ public class UserGroup {
   @Override
   public String toString() {
     return "UserGroup{" +
-        "groupName='" + groupName + '\'' +
-        ", users=" + users +
-        ", permissions=" + permissions +
-        '}';
+            "groupName='" + groupName + '\'' +
+            ", users=" + users +
+            ", permissions=" + permissions +
+            '}';
   }
 
 }

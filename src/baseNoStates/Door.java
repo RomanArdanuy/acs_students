@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Door {
-    private final String id;
+  private final String id;
   private boolean closed; // physically
   private static final Logger logger = LoggerFactory.getLogger(Door.class);
   private DoorState state;
@@ -68,13 +68,13 @@ public class Door {
         state.lock();
 
         break;
-        // fall through
+      // fall through
       case Actions.UNLOCK:
         // TODO
         state.unlock();
         break;
 
-        // fall through
+      // fall through
       case Actions.UNLOCK_SHORTLY:
         // TODO
         state.unlockShortly();
@@ -109,10 +109,10 @@ public class Door {
   @Override
   public String toString() {
     return "Door{"
-        + ", id='" + id + '\''
-        + ", closed=" + closed
-        + ", state=" + getStateName()
-        + "}";
+            + ", id='" + id + '\''
+            + ", closed=" + closed
+            + ", state=" + getStateName()
+            + "}";
   }
 
   public JSONObject toJson() {

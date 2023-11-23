@@ -17,7 +17,7 @@
         <file>C:\\Users\\anton\\IdeaProjects\\acs_students\\log\\log.html</file>
     </appender>
 
-    <!-- Logger for specific classes from the baseNoStates package, milestone 1 -->
+    <!-- Logger for specific classes from te baseNoStates package, milestone 1 -->
     <logger name="baseNoStates" level="debug">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
