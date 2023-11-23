@@ -1,5 +1,10 @@
 package baseNoStates;
 
+/*
+Users are the individuals that will be using the doors and moving around our different areas.
+Each user has a name and credential that makes them unique from each other and they can be
+part of a userGroup, giving them specific access to areas.
+ */
 public class User {
   private final String name;
   private final String credential;

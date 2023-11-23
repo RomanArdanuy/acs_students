@@ -66,7 +66,10 @@ public class RequestArea implements Request {
   public void process() {
     // commented out until Area, Space and Partition are implemented
 
-    DirectoryAreas.makeAreas();
+//    DirectoryAreas.makeAreas();  comentado ya que se maneja automáticamente por el Singleton
+
+
+
     // make the door requests and put them into the area request to be authorized later and
     // processed later
     Area area = DirectoryAreas.findAreaById(areaId);

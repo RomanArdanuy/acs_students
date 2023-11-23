@@ -3,6 +3,12 @@ package baseNoStates;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/*
+A space is a leaf class for our composite implementation. It is a type of area and it can be
+inside partitions, but will never have another space or partition inside. However spaces do
+have doors connecting them to each other.
+ */
 public class Space extends Area {
 
   // Assuming each space has a list of doors giving access

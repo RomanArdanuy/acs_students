@@ -4,18 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DirectoryUserGroup {
+    private static DirectoryUserGroup instance = null;
     private List<UserGroup> userGroups;
 
-    public DirectoryUserGroup() {
+    private DirectoryUserGroup() {
         this.userGroups = new ArrayList<>();
         initializeDefaultUserGroup();
     }
 
-    private void initializeDefaultUserGroup()
-    {
+    public static DirectoryUserGroup getInstance() {
+        if (instance == null) {
+            instance = new DirectoryUserGroup();
+        }
+        return instance;
+    }
+
+    private void initializeDefaultUserGroup() {
         UserGroup adminGroup = new UserGroup("admin");
         UserGroup managersGroup = new UserGroup("managers");
-        UserGroup employeesGroup  = new UserGroup("employees");
+        UserGroup employeesGroup = new UserGroup("employees");
 
         for (Door door : DirectoryDoors.getAllDoors()) {
             // Admin permissions
@@ -32,17 +39,15 @@ public class DirectoryUserGroup {
             // Employees permissions
             if (!door.getId().equals("D1") && (!door.getId().equals("D2"))) {
                 employeesGroup.grantPermission("unlockshortly_" + door.getId());
-                employeesGroup.grantPermission(("open_" + door.getId()));
-                employeesGroup.grantPermission(("close_" + door.getId()));
+                employeesGroup.grantPermission("open_" + door.getId());
+                employeesGroup.grantPermission("close_" + door.getId());
             }
-
         }
 
         userGroups.add(adminGroup);
         userGroups.add(managersGroup);
         userGroups.add(employeesGroup);
     }
-
 
     public void addUserGroup(UserGroup userGroup) {
         if (!userGroups.contains(userGroup)) {

@@ -5,6 +5,12 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+Door is the class that includes all the attributes that our doors need. Doors can be found
+inside of our spaces and partitions, and we will save from which space the door comes from
+and to which space the door is giving access to.
+For all the states a door can be in, we have the doorState class.
+ */
 public class Door {
   private final String id;
   private boolean closed; // physically

@@ -10,7 +10,24 @@ public class DirectoryAreas {
 
   private static Partition root;
 
-  public static void makeAreas()
+
+//Para convertir esta clase para que siga el patron Singleton, añadiremos un campo estático, un constructor privado, un metodo
+//estatico publico getInstance
+  private static DirectoryAreas instance = null;
+  private DirectoryAreas() {
+    allAreas = new ArrayList<>();
+    makeAreas();
+  }
+  public static DirectoryAreas getInstance() {
+    if (instance == null) {
+      instance = new DirectoryAreas();
+    }
+    return instance;
+  }
+
+
+
+  private void makeAreas()
   {
 
     Partition building = new Partition("building", "...", null);
@@ -83,19 +100,12 @@ public class DirectoryAreas {
     Door d8 = DirectoryDoors.findDoorById("D8");
     if (d8 != null) {
       room3.addDoor(d8);
-
     }
-
     Door d9 = DirectoryDoors.findDoorById("D9");
     if (d9 != null) {
       IT.addDoor(d9);
-
     }
-
-
   }
-
-
 
   public static Area findAreaById(String id) {
     for (Area area : allAreas) {
@@ -105,10 +115,5 @@ public class DirectoryAreas {
     }
     return null; // Return null if no area with the given ID is found
   }
-
-
-
-
-
 
 }
