@@ -1,0 +1,10 @@
+10:30:59 [main] DEBUG baseNoStates.DirectoryUserGroup - Default user groups added
+10:30:59 [main] INFO  baseNoStates.DirectoryUserGroup - DirectoryUserGroup initialized with default user groups
+10:30:59 [main] DEBUG baseNoStates.DirectoryUserGroup - New instance of DirectoryUserGroup created
+10:30:59 [main] DEBUG baseNoStates.DirectoryUserGroup - User group found: employees
+10:30:59 [main] DEBUG baseNoStates.DirectoryUserGroup - User group found: managers
+10:30:59 [main] DEBUG baseNoStates.DirectoryUserGroup - User group found: admin
+10:30:59 [main] INFO  baseNoStates.DirectoryAreas - DirectoryAreas instance created
+10:30:59 [main] DEBUG baseNoStates.DirectoryAreas - Initializing DirectoryAreas
+10:30:59 [main] DEBUG baseNoStates.DirectoryAreas - Creating areas
+10:30:59 [main] DEBUG baseNoStates.DirectoryAreas - Areas created successfully

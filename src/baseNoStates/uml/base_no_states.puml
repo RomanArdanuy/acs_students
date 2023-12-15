@@ -2,125 +2,162 @@
 'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
 
-package baseNoStates {
-
-    class User {
-        - name : String
-        - credential : String
-        - userGroup : UserGroup
-        + User(String name, String credential)
-        + getCredential() : String
-        + hasPermission(String requiredPermission) : boolean
-        + getUserGroup() : UserGroup
-        + setUserGroup(UserGroup userGroup) : void
-        + toString() : String
-    }
-
-    class UserGroup {
-        - groupName : String
-        - users : List<User>
-        - permissions : List<String>
-        + UserGroup(String groupName)
-        + getGroupName() : String
-        + addUser(User user) : void
-        + removeUser(User user) : void
-        + hasUser(User user) : boolean
-        + grantPermission(String permission) : void
-        + revokePermission(String permission) : void
-        + hasPermission(String permission) : boolean
-        + toString() : String
-    }
-
-    class DirectoryUserGroup {
-        - userGroups : List<UserGroup>
-        + DirectoryUserGroup()
-        + initializeDefaultUserGroup() : void
-        + addUserGroup(UserGroup userGroup) : void
-        + removeUserGroup(String groupName) : void
-        + findUserGroupByName(String groupName) : UserGroup
-        + listAllUserGroups() : List<UserGroup>
-        + toString() : String
-    }
-
-    class Door {
-        - id : String
-        - state : DoorState
-        + Door(String id)
-        + getId() : String
-        + getStateName() : String
-        + processRequest(Request request) : void
-        + isClosed() : boolean
-        + setState(DoorState state) : void
-    }
-
-    abstract class DoorState {
-        + open(Door door) : void
-        + close(Door door) : void
-        + lock(Door door) : void
-        + unlock(Door door) : void
-        + getStateName() : String
-    }
-
-    class RequestReader {
-        - credential : String
-        - action : String
-        - now : LocalDateTime
-        - doorId : String
-        - userName : String
-        - authorized : boolean
-        - reasons : ArrayList<String>
-        - doorStateName : String
-        - doorClosed : boolean
-        + RequestReader(String credential, String action, LocalDateTime now, String doorId)
-        + setDoorStateName(String name) : void
-        + getAction() : String
-        + isAuthorized() : boolean
-        + addReason(String reason) : void
-        + toString() : String
-        + answerToJson() : JSONObject
-        + process() : void
-        + authorize(User user, Door door) : void
-    }
-
-    class DirectoryDoors {
-        - doors : List<Door>
-        + DirectoryDoors()
-        + findDoorById(String doorId) : Door
-        + getAllDoors() : List<Door>
-    }
-
-    class DirectoryUsers {
-        - users : List<User>
-        + DirectoryUsers()
-        + findUserByCredential(String credential) : User
-        + makeUsers() : void
-    }
-
-    abstract class  Area {
-        - id : String
-        + Area(String id)
-        + getId() : String
-        + getDoorsGivingAccess() : List<Door>
-    }
-
-    class Space {
-        + Space(String id)
-    }
-
-    class Partition {
-        + Partition(String id)
-    }
-
-    Space --|> Area
-    Partition --|> Area
-
-    User --> UserGroup
-    UserGroup o--> User : contains
-    DirectoryUserGroup o--> UserGroup : manages
-    Door o--> DoorState : has a
-    RequestReader --> User : checks
-    RequestReader --> Door : checks
-    Area --> Door : accesses
+class Webserver {
+- {static} PORT :int
+- {static} FORMATTER : DateTimeFormatter
++ Webserver()
 }
 
+class SocketThread {
+- insocked : Socked
+- makeRequest(tokens : String[]) : Request
+- makeRequestReader(tokens : String[]) : RequestReader
+- makeRequestArea(tokens : String[]) : RequestArea
+- makeHeaderAnswer() : String
+- makeJsonAnswer(request : Request) : String
++ run()
+}
+
+Webserver +-right- SocketThread
+
+note right of SocketThread
+inner class
+of Webserver
+end note
+
+
+class DirectoryUsers {
+- {static} users : User[]
++ {static} makeUsers()
++ {static} findUserByCredential(credential : String) : User
+}
+
+DirectoryUsers --> "*" User : "users"
+
+class Door {
+- id : String
+- closed : boolean
++ Door(id : String)
++ processRequest(request : RequestReader)
++ setState(doorState : DoorState)
++ toJson() : JSONObject
+'+ toString() : String
+'+ isClosed() :boolean
+'+ setClosed(b : boolean)
+'+ getStateName() : String
+- doAction(action : String)
+}
+
+class User {
+- name : String
+- credential : String
++ User(name: String, credential: String)
++ toString() : String
+}
+
+
+class Main {
++ {static} main(args : String)
+}
+
+package doorstates {
+    Door --> DoorState : "state"
+    DoorState <|-- Locked
+    DoorState <|-- Unlocked
+
+    class States {
+    +LOCKED : String
+    +UNLOCKED : String
+    }
+
+    class Actions {
+    +LOCK : String
+    +UNLOCK: String
+    +OPEN: String
+    +CLOSE : String
+    }
+
+}
+
+
+abstract class DoorState {
+#door : Door
+#name : String
++DoorState(door : Door)
++open()
++close()
++lock()
++unlock()
+}
+
+
+class Unlocked {
++ DoorState(door : Door)
++ open()
++ close()
++ lock()
++ unlock()
+}
+
+
+class Locked {
++ DoorState(door : Door)
++ open()
++ close()
++ lock()
++ unlock()
+}
+
+Area <|-- Partition
+Area <|-- Space
+Space o--> Door
+Partition o--> Area : areas
+DirectoryAreas --> "1" Area : rootArea
+
+abstract class Area {
++ getDoorsGivingAccess() : Door[]
++ findAreaById(id : String) : Area
++ getSpaces()
+}
+
+class Partition {
++ getSpaces()
+}
+
+class Space {
++ getSpaces()
+}
+
+class DirectoryAreas {
+- {static} rootArea : Area
+- {static} allDoors : Door[]
+- {static} instance : DirectoryAreas
++ {static} makeAreas()
++ {static} findAreaById(id : String) : Area
++ {static} findDoorById(id : String) : Door
++ {static} getAllDoors() : Door[]
++ {static} getInstance() : DirectoryAreas
+}
+
+DirectoryUserGroups o--> "1..*" UserGroup : userGroups
+UserGroup o--> User
+
+class DirectoryUserGroups {
+- userGroups : UserGroup[]
+- {static} instance : DirectoryUserGroups
++ makeUserGroups()
++ findUserByCredential(credential : String) : User
++ getInstance() : DirectoryUserGroups
+}
+
+
+note right of Main::main
+DirectoryDoors.makeDoors()
+DirectoryUsers.makeUsers()
+new Webserver()
+end note
+
+Main -[hidden]down- Webserver
+Webserver -[hidden]down- DirectoryAreas
+DirectoryAreas -[hidden]right- DirectoryUsers
 @enduml

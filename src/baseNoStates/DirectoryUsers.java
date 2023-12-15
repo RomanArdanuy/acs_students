@@ -2,6 +2,13 @@ package baseNoStates;
 
 import java.util.ArrayList;
 
+
+/*
+DirectoryUsers is a class which will be essential for the organisation and creation of the different User ,
+where we will create every user which will acces and use our software, giving them the caracteristics they have
+including the group where they will be asigned.
+We also have a method to obtain a User by his ID, given in its creation.
+*/
 public final class DirectoryUsers {
   private static final ArrayList<User> users = new ArrayList<>();
   private UserGroup userGroup;
